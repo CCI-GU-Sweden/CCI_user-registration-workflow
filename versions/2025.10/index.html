@@ -36,6 +36,10 @@
 
     document.getElementById('md-content').innerHTML = '<md>'+ text +'</md>';
     if (window.renderMarkdown) window.renderMarkdown();
+    // ALL links new-tab:
+    document.querySelectorAll('#main_content a[href]').forEach(a => {
+        a.target = '_blank'; a.rel = 'noopener noreferrer';
+      });
   })();
 </script>
 <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
