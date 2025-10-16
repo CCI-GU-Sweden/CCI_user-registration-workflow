@@ -14,7 +14,7 @@
   (async function () {
     const parts = location.pathname.split('/').filter(Boolean);
     const tag = parts[parts.length - 1];
-    const mdUrl = `https://raw.githubusercontent.com/CCI-GU-Sweden/cci-user-rules/${tag}/CCI_User_Rules.md`;
+    const mdUrl = `https://raw.githubusercontent.com/CCI-GU-Sweden/CCI_user-registration-workflow/${tag}/User-registration-workflow.md`;
 
     const resp = await fetch(mdUrl, { cache: 'no-store' });
     if (!resp.ok) { document.getElementById('md-content').textContent = `Failed to load ${mdUrl} (${resp.status})`; return; }
