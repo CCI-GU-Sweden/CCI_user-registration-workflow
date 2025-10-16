@@ -1,3 +1,22 @@
+<!-- Header block -->
+<div style="
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  margin:0 0 1rem 0;
+">
+  <!-- Logo (stored at assets/gu_logo.png) -->
+  <img src="/assets/gu_logo.png" alt="University of Gothenburg logo"
+       style="width:150px; height:auto; flex:0 0 auto;">
+
+  <!-- Title block (centered next to the logo; wraps under it on small screens) -->
+  <div style="flex:1 1 300px; text-align:center;">
+    <h1 style="margin:0;">University of Gothenburg</h1>
+  </div>
+</div>
+
+# Centre for Cellular Imaging
+
+___
+
 # CCI User Registration Workflow
 
 ## Purpose
