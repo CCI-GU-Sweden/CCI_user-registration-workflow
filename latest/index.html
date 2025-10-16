@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCI User Rules latest</title>
+<link rel="stylesheet" href="https://cci-gu-sweden.github.io/assets/css/style.css">
+<div id="main_content_wrap" class="outer">
+  <section id="main_content" class="inner">
+    <h1>Loading latest…</h1>
+  </section>
+</div>
+<script>
+  function key(t){const m=t.name.match(/^(\d{4})\.(\d{1,2})\.(\d{1,2})(?:\.(\d+))?$/);return m?{y:+m[1],m:+m[2],d:+m[3],n:+(m[4]||0)}:{y:0,m:0,d:0,n:0};}
+  (async function () {
+    const r = await fetch('https://api.github.com/repos/CCI-GU-Sweden/cci-user-rules/tags',
+      { headers: { 'Accept': 'application/vnd.github+json' }, cache:'no-store' });
+    const tags = await r.json();
+    if (Array.isArray(tags) && tags.length){
+      tags.sort((a,b)=>{const A=key(a),B=key(b);return B.y-A.y||B.m-A.m||B.d-A.d||B.n-A.n;});
+      location.replace(`../versions/${tags[0].name}/`);
+    } else {
+      document.body.insertAdjacentHTML('beforeend','<p>No tags found.</p>');
+    }
+  })();
+</script>
