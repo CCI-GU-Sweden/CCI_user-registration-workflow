@@ -1,0 +1,154 @@
+name: Release & Publish (CalVer)
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      # Create CalVer tag unless commit message contains #none
+      - name: Create CalVer tag
+        id: tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          if echo "${{ github.event.head_commit.message }}" | grep -qi '#none'; then
+            echo "No tag requested (#none)."
+            echo "TAG=" >> "$GITHUB_ENV"
+            echo "new_tag=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git fetch --tags --quiet
+
+          # yyyy.mm (zero padding)
+          BASE="$(date -u +%Y.%m)"
+          TAG="$BASE"
+          n=1
+          # If a tag for today already exists, append .2, .3, ...
+          while git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; do
+            n=$((n+1))
+            TAG="$BASE.$n"
+          done
+
+          git tag "$TAG"
+          git push origin "$TAG"
+
+          # Export for later steps (both env and outputs, for robustness)
+          echo "TAG=$TAG"       >> "$GITHUB_ENV"
+          echo "new_tag=$TAG"   >> "$GITHUB_OUTPUT"
+
+          echo "Created tag: $TAG"
+
+      - name: Build HTML for this tag (client-side Markdown)
+        if: env.TAG != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ env.TAG }}"
+          mkdir -p "site/versions/${TAG}" site/latest
+
+          # 1) publish any images/files under assets/ at the site root
+          if [ -d assets ]; then
+            mkdir -p site/assets
+            cp -R assets/* site/assets/
+          fi
+
+          # 2) Version page
+          cat > "site/versions/${TAG}/index.html" <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>CCI User Rules</title>
+          <link rel="stylesheet" href="https://cci-gu-sweden.github.io/assets/css/style.css">
+
+          <div id="main_content_wrap" class="outer">
+            <section id="main_content" class="inner">
+              <div id="md-content"><em>Loading…</em></div>
+            </section>
+          </div>
+
+          <script>
+            (async function () {
+              const parts = location.pathname.split('/').filter(Boolean);
+              const tag = parts[parts.length - 1];
+              const mdUrl = `https://raw.githubusercontent.com/CCI-GU-Sweden/cci-user-rules/${tag}/CCI_User_Rules.md`;
+
+              const resp = await fetch(mdUrl, { cache: 'no-store' });
+              if (!resp.ok) { document.getElementById('md-content').textContent = `Failed to load ${mdUrl} (${resp.status})`; return; }
+
+              let text = await resp.text();
+
+              // Inject the version/date
+              text = text.replace(/\{\{\s*(VERSION|TAG)\s*\}\}/gi, tag);
+
+              // Rewrite RELATIVE image sources like (assets/foo.png) -> /cci-user-rules/assets/foo.png
+              const siteBase = '/cci-user-rules/';
+              text = text
+                // markdown images ![alt](relative)
+                .replace(/!\[([^\]]*)\]\(((?!https?:|\/)[^)]+)\)/g,
+                         (m, alt, rel) => `![${alt}](${siteBase}${rel.replace(/^\.?\/*/,'')})`)
+                // html <img src="relative">
+                .replace(/<img\s+([^>]*?)src=["']((?!https?:|\/)[^"']+)["']([^>]*)>/gi,
+                         (m, pre, rel, post) => `<img ${pre}src="${siteBase}${rel.replace(/^\.?\/*/,'')}"${post}>`);
+
+              document.getElementById('md-content').innerHTML = '<md>'+ text +'</md>';
+              if (window.renderMarkdown) window.renderMarkdown();
+            })();
+          </script>
+          <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
+          EOF
+
+          # Latest page
+          cat > site/latest/index.html <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>CCI User Rules latest</title>
+          <link rel="stylesheet" href="https://cci-gu-sweden.github.io/assets/css/style.css">
+          <div id="main_content_wrap" class="outer">
+            <section id="main_content" class="inner">
+              <h1>Loading latest…</h1>
+            </section>
+          </div>
+          <script>
+            function key(t){const m=t.name.match(/^(\d{4})\.(\d{1,2})\.(\d{1,2})(?:\.(\d+))?$/);return m?{y:+m[1],m:+m[2],d:+m[3],n:+(m[4]||0)}:{y:0,m:0,d:0,n:0};}
+            (async function () {
+              const r = await fetch('https://api.github.com/repos/CCI-GU-Sweden/cci-user-rules/tags',
+                { headers: { 'Accept': 'application/vnd.github+json' }, cache:'no-store' });
+              const tags = await r.json();
+              if (Array.isArray(tags) && tags.length){
+                tags.sort((a,b)=>{const A=key(a),B=key(b);return B.y-A.y||B.m-A.m||B.d-A.d||B.n-A.n;});
+                location.replace(`../versions/${tags[0].name}/`);
+              } else {
+                document.body.insertAdjacentHTML('beforeend','<p>No tags found.</p>');
+              }
+            })();
+          </script>
+          EOF
+  
+          # Root redirect → /latest/
+          cat > site/index.html <<'EOF'
+          <!doctype html>
+          <meta http-equiv="refresh" content="0;url=./latest/">
+          <title>CCI User Rules</title>
+          <a href="./latest/">Go to latest</a>
+          EOF
+
+
+      - name: Deploy to gh-pages
+        if: env.TAG != ''             # <-- same simple gate
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: site
