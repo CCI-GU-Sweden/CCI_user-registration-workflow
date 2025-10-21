@@ -66,7 +66,7 @@ PI registration includes:
 - Providing billing details (*Ansvarsnummer* for GU or invoice information for external users).  
 - Ensuring group members are correctly associated with the lab.
 
-> Reference: *CrossLab manual – GU PI* or *CrossLab manual – External PI.*
+> Reference: *[CrossLab manual – GU PI](https://cci-gu-sweden.github.io/docs/crosslab_gu_pi/)* or *[CrossLab manual – External PI](https://cci-gu-sweden.github.io/docs/crosslab_external_pi/)*.
 
 ---
 
@@ -83,7 +83,7 @@ During registration:
 A user is **considered active** only after the signed registration form has been received by CCI staff.  
 Once active, users can be scheduled for training and gain access to CCI resources.
 
-> Reference: *CrossLab manual – GU User* or *CrossLab manual – External User.*
+> Reference: *[CrossLab manual – GU User](https://cci-gu-sweden.github.io/docs/crosslab_gu_user/)* or *[CrossLab manual – External User](https://cci-gu-sweden.github.io/docs/crosslab_external_user/)*.
 
 ---
 
@@ -97,7 +97,7 @@ Users must:
 3. Select **“GU – Centre for Cellular Imaging”** as the host node.  
 4. Provide a short, non-confidential project description (a few sentences per field).  
 
-> Reference: *NMI Portal Instructions.*
+> Reference: *[NMI Portal Instructions](https://cci-gu-sweden.github.io/docs/nmi_portail/)*.
 
 ---
 
@@ -106,7 +106,7 @@ Once the **signed registration form** is received, the user becomes officially a
 CCI staff then:
 - Organize training and/or service scheduling.  
 - Grant access to booking calendars in CrossLab for trained systems.  
-- Ensure that data management guidelines (e.g., OMERO usage) are followed.
+- Ensure that data management guidelines (e.g. OMERO usage) are followed.
 
 ---
 
@@ -122,7 +122,7 @@ CCI staff then:
 ---
 
 ## Required Documents
-- **CCI User Rules** (PDF or web version)  
+- **CCI User Rules** ([link](https://cci-gu-sweden.github.io/user-rules/))  
 - **CrossLab Manual** (relevant to user type)  
 - **NMI Portal Instructions**  
 - **Data Management Guidelines** (OMERO / NAS usage)
@@ -171,7 +171,7 @@ Only then can you schedule training or request services.
 ---
 
 ### 5. My PI is not listed in CrossLab — what should I do?
-Your PI must first create a **lab group** in CrossLab following the *PI registration manual* (GU or External).  
+Your PI must first create a **lab group** in CrossLab following the *PI registration manual* ([GU](https://cci-gu-sweden.github.io/docs/crosslab_gu_pi/) or [External](https://cci-gu-sweden.github.io/docs/crosslab_external_pi/)).  
 Once the group exists, you can register under it as a user.
 
 ---
@@ -191,8 +191,8 @@ All users must read and accept them during the CrossLab registration process.
 
 ### 8. How do I transfer and manage my data?
 CCI uses **OMERO** as the primary system for data transfer and image data management.  
-OMERO ensures secure, structured, and shareable access to microscopy data.  
-In some specific cases (e.g., large temporary data sets or compatibility issues), a **NAS server** may be used instead.  
+[OMERO](https://cci-gu-sweden.github.io/omero_howto) ensures secure, structured, and shareable access to microscopy data.  
+In some specific cases (e.g., large temporary data sets or compatibility issues), a **[NAS server](https://cci-gu-sweden.github.io/docs/connect_cci_server/)** may be used instead.  
 CCI staff will inform you which method applies to your project.
 
 ---
