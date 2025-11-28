@@ -150,9 +150,11 @@ jobs:
 
 
       - name: Deploy to gh-pages
-        if: env.TAG != ''             # <-- same simple gate
+        if: env.TAG != ''
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: site
+          keep_files: true
+          
