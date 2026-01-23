@@ -52,7 +52,7 @@ ___
 
 ### Step 1 – Initial Contact and Project Meeting
 
-New users should contact **cci@gu.se** to schedule an introductory meeting with a CCI staff scientist.  
+New users should contact **<cci@gu.se>** to schedule an introductory meeting with a CCI staff scientist.  
 During this meeting, we discuss:
 
 - The scientific goals and imaging needs.  
@@ -101,7 +101,7 @@ ___
 ### Step 4 – Project Registration in the NMI Portal
 
 All scientific projects performed at the CCI should be registered in the **National Microscopy Infrastructure (NMI) Portal**.  
-This enables CCI to document the scientific use of its services and report impact to its **funding agencies**.  
+This enables CCI to document the scientific use of its services and report impact to its **funding agencies**. Please note that invoicing at the CCI is **not** handled via the NMI portal, as such, for the Invoice reference field, you can add your PI’s name.  
 
 Users must:
 
@@ -128,7 +128,7 @@ ___
 ## Responsibilities
 
 | Role | Responsibilities |
-|------|------------------|
+ | ------ | ------------------ |
 | **Principal Investigator (PI)** | Registers the group and billing information in CrossLab; approves new users under their lab; ensures group compliance with CCI policies. |
 | **User** | Completes registration in CrossLab, accepts user rules, provides signed form to CCI staff, and registers project in the NMI Portal when applicable. |
 | **CCI Staff Scientist** | Guides users through the process, verifies forms, activates access once documentation is complete, and oversees training and service initiation. |
@@ -138,7 +138,7 @@ ___
 
 ## Required Documents
 
-- **CCI User Rules** ([link](https://cci-gu-sweden.github.io/user-rules/))  
+- [**CCI User Rules**](https://cci-gu-sweden.github.io/user-rules/)  
 - **CrossLab Manual** (relevant to user type)  
 - **NMI Portal Instructions**  
 - **Data Management Guidelines** (OMERO / NAS usage)
@@ -226,9 +226,9 @@ For new company users, we need the following details to create a billing profile
 
 If you encounter any issues:
 
-- For **CrossLab access or user registration**, contact **cci@gu.se**.  
+- For **CrossLab access or user registration**, contact **<cci@gu.se>**.  
 - For **technical issues with CrossLab**, use the *Support Portal* link inside CrossLab to submit a ticket.  
-- For **NMI Portal problems**, contact **support@nmisweden.se**.
+- For **NMI Portal problems**, contact **<support@nmisweden.se>**.
 
 ### 11. I have used microscopes before. Can I access the equipment without training?
 
