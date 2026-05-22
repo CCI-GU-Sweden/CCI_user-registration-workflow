@@ -19,7 +19,7 @@ ___
 
 # CCI User Registration Workflow
 
-## Purpose¨
+## Purpose
 
 This document describes the procedure for registering new users at the **Centre for Cellular Imaging (CCI)**, University of Gothenburg.  
 The registration ensures that users are properly documented for **administrative** and **scientific** purposes before gaining access to CCI resources and services.
@@ -101,14 +101,16 @@ ___
 ### Step 4 – Project Registration in the NMI Portal
 
 All scientific projects performed at the CCI should be registered in the **National Microscopy Infrastructure (NMI) Portal**.  
-This enables CCI to document the scientific use of its services and report impact to its **funding agencies**. Please note that invoicing at the CCI is **not** handled via the NMI portal, as such, for the Invoice reference field, you can add your PI’s name.  
+This enables CCI to document the scientific use of its services and report impact to its **funding agencies**. Please note that invoicing at the CCI is **not** handled via the NMI portal.
 
 Users must:
 
 1. Visit [https://nmi.scilifelab.se](https://nmi.scilifelab.se).  
-2. Create an account and submit a new project application.  
-3. Select **“GU – Centre for Cellular Imaging”** as the host node.  
-4. Provide a short, non-confidential project description (a few sentences per field).  
+2. Create an account
+3. Put your PI's name in the 'Invoice reference field'
+4. Submit a new project application.  
+5. Select **“GU – Centre for Cellular Imaging”** as the host node.  
+6. Provide a short, non-confidential project description (a few sentences per field).  
 
 > Reference: *[NMI Portal Instructions](https://cci-gu-sweden.github.io/docs/nmi_portal/)*.
 
@@ -177,9 +179,9 @@ However, registering your project in the NMI Portal is **strongly recommended**.
 Without project registrations, CCI cannot demonstrate the scientific use of its infrastructure — which is essential to sustain the facility economically.  
 For large or long-term projects requiring significant CCI staff involvement, we may request an NMI project registration **before** starting the work.
 
-For the required field “Invoice reference” in Invoice reference and address, you can simply enter your email address.
+For the required field “Invoice reference” in Invoice reference and address, you can either enter your email address or your PI's name.
 
-CCI does not use the NMI Portal for billing — only for project registration. These invoice fields are part of the national system and are required by other units, but they are not used by CCI.
+CCI does **NOT** use the NMI Portal for billing — only for project registration. These invoice fields are part of the national system and are required by other units, but they are not used by CCI.
 
 ### 4. When am I considered an active user at CCI?
 
